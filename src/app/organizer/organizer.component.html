@@ -6,12 +6,13 @@
     <button
       mat-stroked-button
       color="primary"
+      fxFlex.lt-sm="1 1 100%"
       (click)="add()"
     >
       Create
     </button>
 
-    <mat-form-field>
+    <mat-form-field fxHide.lt-sm>
       <mat-label>Filter</mat-label>
 
       <input
@@ -27,79 +28,138 @@
 
   <main>
 
-    <table
-      matSort
-      mat-table
-      fxFlex="1 1 100%"
-      matSortStart="desc"
-      [class.hidden]="!dataSource.data.length"
-      [dataSource]="dataSource"
-    >
-      <ng-container matColumnDef="index">
-        <th mat-header-cell *matHeaderCellDef class="tac w45px"> No.</th>
-        <td mat-cell *matCellDef="let i = index" class="tac w45px">{{ getRealIndex(i) + 1 }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef class="tac w45px">Edit</th>
-        <td mat-cell *matCellDef="let element; let i = index" class="tac w45px">
-          <mat-icon
-            color="accent"
-            [class.disabled]="element.completed"
-            (click)="edit(element)"
-          >edit
-          </mat-icon>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-        <td mat-cell *matCellDef="let element" [class.completed]="element.completed">{{ element.title }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-        <td mat-cell *matCellDef="let element" [class.completed]="element.completed">{{ element.description }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="completed">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Completed</th>
-        <td mat-cell *matCellDef="let element">
-          <span *ngIf="element.completed; else notCompletedLabelBlock">Yes</span>
-
-          <ng-template #notCompletedLabelBlock>
-            <span>No</span>
-          </ng-template>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef class="tac w45px">Delete</th>
-        <td mat-cell *matCellDef="let i = index" class="tac w45px">
-          <mat-icon
-            color="warn"
-            (click)="remove(getRealIndex(i))"
-          >
-            delete
-          </mat-icon>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
     <div
-      *ngIf="!dataSource.data.length"
+      *ngIf="dataSource.data.length; else noDataBlock"
+      fxFlex="1 1 100%"
+      fxHide.lt-sm
+      class="table-container"
+    >
+      <table
+        matSort
+        mat-table
+        fxFlex="1 1 100%"
+        matSortStart="desc"
+        [dataSource]="dataSource"
+      >
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef class="tac w45px"> No.</th>
+          <td mat-cell *matCellDef="let i = index" class="tac w45px">{{ getRealIndex(i) + 1 }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef class="tac w45px">Edit</th>
+          <td mat-cell *matCellDef="let element; let i = index" class="tac w45px">
+            <mat-icon
+              color="accent"
+              [class.disabled]="element.completed"
+              (click)="edit(element)"
+            >
+              edit
+            </mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+          <td mat-cell *matCellDef="let element" [class.completed]="element.completed">{{ element.title }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+          <td mat-cell *matCellDef="let element" [class.completed]="element.completed">{{ element.description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="completed">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Completed</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.completed; else notCompletedLabelBlock">Yes</span>
+
+            <ng-template #notCompletedLabelBlock>
+              <span>No</span>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef class="tac w45px">Delete</th>
+          <td mat-cell *matCellDef="let i = index" class="tac w45px">
+            <mat-icon
+              color="warn"
+              (click)="remove(getRealIndex(i))"
+            >
+              delete
+            </mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <ul
+      *ngIf="dataSource.data.length"
+      fxHide.gt-xs
+      fxFlex="1 1 100%"
+      class="phone-view small-container"
+    >
+      <li
+        *ngFor="let element of dataSource.data; let i = index"
+        fxLayout="column"
+        fxLayoutGap="10px"
+      >
+        <div
+          class="actions"
+          fxLayoutAlign="space-between"
+        >
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="edit(element)"
+          >
+            Edit
+          </button>
+
+          <button
+            mat-stroked-button
+            color="warn"
+            (click)="remove(i)"
+          >
+            Delete
+          </button>
+        </div>
+
+        <div
+          fxLayout="row wrap"
+          fxLayoutGap="5px"
+        >
+          <b fxFlex="1 1 25%">Title:</b>
+          <span fxFlex="1 1 70%">{{ element.title }}</span>
+        </div>
+
+        <div
+          fxLayout="row wrap"
+          fxLayoutGap="5px"
+        >
+          <b fxFlex="1 1 25%">Description:</b>
+          <span fxFlex="1 1 70%">{{ element.description }}</span>
+        </div>
+      </li>
+    </ul>
+  </main>
+
+  <ng-template #noDataBlock>
+    <div
       class="no-data"
       fxLayoutAlign="center center"
     >
       Seems like you don't have any plans yet
     </div>
-  </main>
+  </ng-template>
 
   <footer>
     <mat-paginator
+      fxHide.lt-sm
       showFirstLastButtons
       [class.hidden]="!dataSource.data.length"
       [pageSizeOptions]="[5, 10, 20]"

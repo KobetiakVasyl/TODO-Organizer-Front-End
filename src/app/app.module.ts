@@ -13,7 +13,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatIconModule} from "@angular/material/icon";
-import {FlexModule} from "@angular/flex-layout";
+import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 
 import {AppComponent} from './app.component';
 import {OrganizerComponent} from './organizer/organizer.component';
@@ -41,7 +41,8 @@ import {MessagePopUpComponent} from './message-pop-up/message-pop-up.component';
     MatTableModule,
     MatSortModule,
     MatIconModule,
-    FlexModule
+    FlexModule,
+    FlexLayoutModule
   ],
   entryComponents: [
     TodoPopUpComponent,

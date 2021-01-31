@@ -17,11 +17,27 @@ mat-icon {
 }
 
 .container {
-  padding: 1rem;
+  padding: 1rem !important;
 }
 
 .small-container {
-  padding: .5rem;
+  padding: .5rem !important;
+}
+
+ul.phone-view {
+  margin: 0;
+  padding: 0;
+  color: white;
+  list-style-type: none;
+
+  li:first-child {
+    border-top: 3px solid blueviolet;
+  }
+
+  li {
+    padding: 15px 0;
+    border-bottom: 3px solid blueviolet;
+  }
 }
 
 .hidden {

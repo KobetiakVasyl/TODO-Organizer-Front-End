@@ -12,7 +12,7 @@ export class OrganizerService {
 
   handleAddTodo(): Observable<Todo> {
     const dialogRef = this.dialog.open(TodoPopUpComponent, {
-      minWidth: '500px',
+      minWidth: '350px',
       data: {
         isEditing: false,
         buttonsLabelResolve: 'Create'
@@ -24,7 +24,7 @@ export class OrganizerService {
 
   handleEditTodo(todo: Todo): Observable<any> {
     const dialogRef = this.dialog.open(TodoPopUpComponent, {
-      minWidth: '500px',
+      minWidth: '350px',
       data: {
         isEditing: true,
         buttonsLabelResolve: 'Save',
@@ -37,7 +37,7 @@ export class OrganizerService {
 
   handleRemoveTodo(i: number): Observable<boolean> {
     const dialogRef = this.dialog.open(MessagePopUpComponent, {
-      minWidth: '500px',
+      minWidth: '350px',
       data: {
         title: 'Warning!',
         content: `TODO with number: ${i} will be deleted. Continue?`,
