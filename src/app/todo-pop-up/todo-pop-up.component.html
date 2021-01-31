@@ -1,0 +1,61 @@
+<h3 mat-dialog-title>TODO Pop Up</h3>
+
+<div
+  fxLayout="column"
+  fxFlexFill="1"
+  [formGroup]="formGroup"
+>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+
+    <input
+      matInput
+      type="text"
+      formControlName="title"
+    >
+
+    <mat-error>This field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+
+    <textarea
+      matInput
+      rows="5"
+      type="text"
+      formControlName="description"
+    ></textarea>
+
+    <mat-error>This field is required</mat-error>
+  </mat-form-field>
+
+  <mat-checkbox
+    *ngIf="data.isEditing"
+    color="primary"
+    formControlName="completed"
+  >
+    Completed
+  </mat-checkbox>
+</div>
+
+<div
+  mat-dialog-actions
+  fxLayoutAlign="end"
+>
+  <button
+    mat-stroked-button
+    color="warn"
+    [mat-dialog-close]="null"
+  >Cancel
+  </button>
+
+  <button
+    mat-stroked-button
+    color="primary"
+    [disabled]="formGroup.invalid || formGroup.pristine"
+    (click)="submit()"
+  >
+    {{ data.buttonsLabelResolve }}
+  </button>
+</div>

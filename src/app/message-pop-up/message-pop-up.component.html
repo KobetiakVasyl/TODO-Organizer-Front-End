@@ -1,0 +1,26 @@
+<h3 mat-dialog-title>{{ data.title }}</h3>
+
+<div mat-dialog-content>
+  {{ data.content }}
+</div>
+
+<div
+  mat-dialog-actions
+  fxLayoutAlign="end"
+>
+  <button
+    mat-stroked-button
+    color="warn"
+    [mat-dialog-close]="false"
+  >
+    {{ data.buttonsLabel.reject }}
+  </button>
+
+  <button
+    mat-stroked-button
+    color="primary"
+    [mat-dialog-close]="true"
+  >
+    {{ data.buttonsLabel.resolve }}
+  </button>
+</div>
