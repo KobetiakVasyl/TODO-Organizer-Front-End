@@ -16,16 +16,20 @@ mat-icon {
   cursor: pointer;
 }
 
-.disabled {
-  color: grey !important;
-  opacity: .4 !important;
-}
-
 .container {
   padding: 1rem;
 }
 
 .small-container {
   padding: .5rem;
+}
+
+.hidden {
+ display: none !important;
+}
+
+.disabled {
+  color: grey !important;
+  opacity: .4 !important;
 }
 

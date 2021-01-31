@@ -7,27 +7,6 @@ import {Todo} from "./organizer/organizer.component";
 
 @Injectable({providedIn: 'root'})
 export class OrganizerService {
-  todos: Todo[] = [
-    {
-      id: 1,
-      title: 'first',
-      description: 'asdqwe',
-      completed: false
-    },
-    {
-      id: 2,
-      title: 'second',
-      description: 'asdqweasdqwe',
-      completed: false
-    },
-    {
-      id: 3,
-      title: 'third',
-      description: 'asdqweasdqweasdqwe',
-      completed: true
-    }
-  ];
-
   constructor(private dialog: MatDialog) {
   }
 

@@ -35,6 +35,15 @@ export class OrganizerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.dataSource.filterPredicate = ((todo: Todo, filter: string) => {
+      if (!filter) return;
+
+      return !!(
+        todo.title.toLowerCase().includes(filter) ||
+        todo.description.toLowerCase().includes(filter)
+      );
+    });
+
     this.subscriptions.add(
       this.filterControl.valueChanges
         .pipe(
@@ -45,8 +54,6 @@ export class OrganizerComponent implements OnInit, OnDestroy {
         )
         .subscribe(value => this.dataSource.filter = value)
     );
-
-    this.dataSource.data = this.organizerService.todos;
 
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -69,11 +76,15 @@ export class OrganizerComponent implements OnInit, OnDestroy {
     });
   }
 
-  edit(i:number, todo: Todo): void {
+  edit(todo: Todo): void {
     this.organizerService.handleEditTodo(todo).subscribe(response => {
       if (!response) return;
-      console.log(response);
-      this.dataSource.data[i] = response;
+      const i = this.dataSource.data.findIndex(({id}) => id === response.id);
+
+      this.dataSource.data[i].title = response.title;
+      this.dataSource.data[i].description = response.description;
+      this.dataSource.data[i].completed = response.completed;
+
       this.dataSource._updateChangeSubscription();
     });
   }

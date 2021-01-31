@@ -21,7 +21,7 @@
         [formControl]="filterControl"
       >
 
-      <mat-hint>Data will filter automatically</mat-hint>
+      <mat-hint>Filter by description or title</mat-hint>
     </mat-form-field>
   </header>
 
@@ -32,6 +32,7 @@
       mat-table
       fxFlex="1 1 100%"
       matSortStart="desc"
+      [class.hidden]="!dataSource.data.length"
       [dataSource]="dataSource"
     >
       <ng-container matColumnDef="index">
@@ -45,8 +46,9 @@
           <mat-icon
             color="accent"
             [class.disabled]="element.completed"
-            (click)="edit(getRealIndex(i), element)"
-          >edit</mat-icon>
+            (click)="edit(element)"
+          >edit
+          </mat-icon>
         </td>
       </ng-container>
 
@@ -86,12 +88,20 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <div
+      *ngIf="!dataSource.data.length"
+      class="no-data"
+      fxLayoutAlign="center center"
+    >
+      Seems like you don't have any plans yet
+    </div>
   </main>
 
   <footer>
     <mat-paginator
       showFirstLastButtons
-      fxFlex="1 1 100%"
+      [class.hidden]="!dataSource.data.length"
       [pageSizeOptions]="[5, 10, 20]"
     ></mat-paginator>
   </footer>

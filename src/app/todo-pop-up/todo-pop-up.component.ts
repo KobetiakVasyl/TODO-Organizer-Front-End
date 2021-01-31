@@ -16,6 +16,7 @@ interface Data {
 })
 export class TodoPopUpComponent implements OnInit {
   formGroup = new FormGroup({
+    id: new FormControl(null),
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     completed: new FormControl(false)
