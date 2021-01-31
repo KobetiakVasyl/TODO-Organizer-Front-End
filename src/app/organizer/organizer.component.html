@@ -120,6 +120,23 @@
             Edit
           </button>
 
+          <mat-icon
+            *ngIf="element.completed; else notCompletedBlock"
+            class="todo-status completed"
+            matTooltip="Completed"
+          >
+            done
+          </mat-icon>
+
+          <ng-template #notCompletedBlock>
+            <mat-icon
+              matTooltip="Not completed yet"
+              class="todo-status waiting"
+            >
+              hourglass_empty
+            </mat-icon>
+          </ng-template>
+
           <button
             mat-stroked-button
             color="warn"

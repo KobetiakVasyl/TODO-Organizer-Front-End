@@ -7,6 +7,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
@@ -27,23 +28,24 @@ import {MessagePopUpComponent} from './message-pop-up/message-pop-up.component';
     TodoPopUpComponent,
     MessagePopUpComponent
   ],
-  imports: [
-    BrowserModule,
-    NoopAnimationsModule,
-    ReactiveFormsModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatInputModule,
-    MatTableModule,
-    MatSortModule,
-    MatIconModule,
-    FlexModule,
-    FlexLayoutModule
-  ],
+    imports: [
+        BrowserModule,
+        NoopAnimationsModule,
+        ReactiveFormsModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatCheckboxModule,
+        MatToolbarModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatInputModule,
+        MatTableModule,
+        MatSortModule,
+        MatIconModule,
+        FlexModule,
+        FlexLayoutModule,
+        MatTooltipModule
+    ],
   entryComponents: [
     TodoPopUpComponent,
     MessagePopUpComponent
