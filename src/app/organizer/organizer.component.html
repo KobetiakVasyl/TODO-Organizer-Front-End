@@ -37,8 +37,8 @@
       class="table-container"
     >
       <table
-        matSort
         mat-table
+        matSort
         fxFlex="1 1 100%"
         matSortStart="desc"
         [dataSource]="dataSource"
@@ -58,6 +58,13 @@
             >
               edit
             </mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let element" [class.completed]="element.completed">
+            {{ element.date | date: 'MM/dd/yyyy' }}
           </td>
         </ng-container>
 

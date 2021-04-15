@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Todo} from "../organizer/organizer.component";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Todo} from '../organizer/organizer.component';
 
 interface Data {
   isEditing: boolean;
@@ -15,9 +15,12 @@ interface Data {
   styleUrls: ['./todo-pop-up.component.scss']
 })
 export class TodoPopUpComponent implements OnInit {
+  readonly todayDate = new Date();
+
   formGroup = new FormGroup({
     id: new FormControl(null),
     title: new FormControl('', Validators.required),
+    date: new FormControl(this.todayDate, Validators.required),
     description: new FormControl('', Validators.required),
     completed: new FormControl(false)
   });
@@ -35,7 +38,9 @@ export class TodoPopUpComponent implements OnInit {
   }
 
   submit(): void {
-    if (this.formGroup.invalid) return;
+    if (this.formGroup.invalid) {
+      return;
+    }
 
     this.dialogRef.close(this.formGroup.value);
   }

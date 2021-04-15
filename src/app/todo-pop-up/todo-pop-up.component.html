@@ -10,6 +10,7 @@
 
     <input
       matInput
+      required
       type="text"
       formControlName="title"
     >
@@ -22,10 +23,29 @@
 
     <textarea
       matInput
+      required
       rows="5"
       type="text"
       formControlName="description"
     ></textarea>
+
+    <mat-error>This field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Due Date</mat-label>
+
+    <input
+      matInput
+      required
+      formControlName="date"
+      readonly
+      [min]="todayDate"
+      [matDatepicker]="picker"
+    >
+
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
 
     <mat-error>This field is required</mat-error>
   </mat-form-field>
