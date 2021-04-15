@@ -22,7 +22,14 @@ export interface Todo {
 
 export class OrganizerComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Todo>([]);
-  displayedColumns = ['index', 'edit', 'title', 'description', 'completed', 'delete'];
+  displayedColumns = [
+    'index',
+    // 'edit',
+    'title',
+    'description',
+    'completed',
+    'delete'
+  ];
 
   filterControl = new FormControl('');
 

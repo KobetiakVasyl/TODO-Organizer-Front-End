@@ -1,18 +1,20 @@
 <section fxLayout="column">
   <header
     class="small-container"
+    fxLayout="row"
+    fxLayout.lt-sm="column"
     fxLayoutAlign="space-between center"
   >
     <button
       mat-stroked-button
       color="primary"
-      fxFlex.lt-sm="1 1 100%"
+      ngClass.lt-sm="w100p"
       (click)="add()"
     >
       Create
     </button>
 
-    <mat-form-field fxHide.lt-sm>
+    <mat-form-field ngClass.lt-sm="w100p">
       <mat-label>Filter</mat-label>
 
       <input
@@ -104,7 +106,7 @@
       class="phone-view small-container"
     >
       <li
-        *ngFor="let element of dataSource.data; let i = index"
+        *ngFor="let element of dataSource.filteredData; let i = index"
         fxLayout="column"
         fxLayoutGap="10px"
       >
