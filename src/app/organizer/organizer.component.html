@@ -159,6 +159,14 @@
           fxLayout="row wrap"
           fxLayoutGap="5px"
         >
+          <b fxFlex="1 1 25%">Due Date:</b>
+          <span fxFlex="1 1 70%">{{ element.date | date: 'MM/dd/yyyy' }}</span>
+        </div>
+
+        <div
+          fxLayout="row wrap"
+          fxLayoutGap="5px"
+        >
           <b fxFlex="1 1 25%">Title:</b>
           <span fxFlex="1 1 70%">{{ element.title }}</span>
         </div>
