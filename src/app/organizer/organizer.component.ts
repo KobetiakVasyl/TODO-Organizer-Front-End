@@ -1,4 +1,4 @@
-import {Component, ViewChild, OnInit, OnDestroy, AfterViewInit} from '@angular/core';
+import {Component, ViewChild, OnInit, OnDestroy} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {OrganizerService} from '../organizer.service';
@@ -21,7 +21,7 @@ export interface Todo {
   styleUrls: ['./organizer.component.scss']
 })
 
-export class OrganizerComponent implements OnInit, AfterViewInit, OnDestroy {
+export class OrganizerComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Todo>([]);
   displayedColumns = [
     'index',
@@ -37,8 +37,18 @@ export class OrganizerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   subscriptions = new Subscription();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  paginator!: MatPaginator;
+  sort!: MatSort;
+
+  @ViewChild(MatPaginator) set dataSourcePaginator(mp) {
+    this.paginator = mp;
+    this.dataSource.paginator = mp;
+  }
+
+  @ViewChild(MatSort) set dataSourceSort(ms) {
+    this.sort = ms;
+    this.dataSource.sort = ms;
+  }
 
   constructor(private organizerService: OrganizerService) {
   }
@@ -65,14 +75,6 @@ export class OrganizerComponent implements OnInit, AfterViewInit, OnDestroy {
         )
         .subscribe(value => this.dataSource.filter = value)
     );
-
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   ngOnDestroy(): void {
